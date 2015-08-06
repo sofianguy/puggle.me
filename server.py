@@ -11,8 +11,8 @@ def homepage():
 
 @app.route('/data-result')
 def dataoutcome():
-	data_outcome = request.args.get("URL-input")
-	data_measure = measure("https://" + data_outcome)
+	user_input_url = request.args.get("url-input")
+	data_measure = measure("https://" + user_input_url) #calling measure() function
 
 	return render_template('data-result.html', data_measure = data_measure)
 

@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE #subprocess opens accesses .js file
 from json import loads
 
 def measure(url):
@@ -17,10 +17,13 @@ def measure(url):
         raise Exception('PhantomJS Error')
     else:
         #read JSON string from phantomjs program (e.g., python app.py)
-        stdout = proc.stdout.readline()
+        stdout = proc.stdout.readline() #stdout is a string
         #stdout is a string that looks like '{"size":20, "files": 3}'
-
         # turn that string into a python dict
         #loads from json.loads (imported)
         results = loads(stdout)
-        return results
+
+        #getting just the webpage size, in kilobytes
+        webpage_size_kb =  str(results['size'] / 1000) + " kilobytes"
+        
+        return webpage_size_kb
