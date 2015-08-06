@@ -12,9 +12,11 @@ def homepage():
 @app.route('/data-result')
 def dataoutcome():
 	user_input_url = request.args.get("url-input")
+	website_url = "https://" + user_input_url
 	data_measure = measure("https://" + user_input_url) #calling measure() function
 
-	return render_template('data-result.html', data_measure = data_measure)
+	return render_template('data-result.html', website_url = website_url, 
+		data_measure = data_measure)
 
 
 if __name__ == '__main__':
