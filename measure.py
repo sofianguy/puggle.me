@@ -2,7 +2,7 @@ from subprocess import Popen, PIPE #subprocess opens accesses .js file
 from json import loads
 
 def measure(url):
-    args = ['phantomjs', '--ssl-protocol=any', '--web-security=false', 'data-measure.js', url]
+    args = ['phantomjs', '--ssl-protocol=any', '--web-security=false', 'dataMeasure.js', url]
     # (Terminal)
     # $ phantomjs --ssl-protocol=any --web-security=false phantom-measure.js "http://google.com"
     #PIPE used for phantom.py and phantom-measure.js to talk to each other

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 
 from measure import measure #from measure.py file, import measure() function
+# from bingSearch import search
 
 app = Flask(__name__)
 
