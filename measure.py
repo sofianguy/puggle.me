@@ -23,6 +23,6 @@ def measure(url):
         #loads from json.loads (imported)
         results = loads(stdout)
 
-        #getting just the webpage size, in kilobytes
+        #getting *just* the webpage size, in kilobytes
         webpage_size_kb = str(results['size'] / 1000) + " kilobytes"
         return webpage_size_kb

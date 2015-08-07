@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 
 from measure import measure #from measure.py file, import measure() function
-# from bingSearch import search
+
+# from bingSearch import search # from bingSearch import search
 
 app = Flask(__name__)
 
@@ -13,11 +14,14 @@ def homepage():
 @app.route('/data-result')
 def dataoutcome():
 	user_input_url = request.args.get("url-input")
-	website_url = "https://" + user_input_url
-	data_measure = measure("https://" + user_input_url) #calling measure() function
+	website_url = "https://www." + user_input_url
+	data_measure = measure("https://www." + user_input_url) #calling measure() function
 
 	return render_template('data-result.html', website_url = website_url, 
 		data_measure = data_measure)
+
+# @app.route('/bingSearchHomepage')
+# def bingsearch(str):
 
 
 if __name__ == '__main__':
