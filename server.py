@@ -27,51 +27,22 @@ def bingsearch():
 
 @app.route('/bingSearchResult')
 def bingResult():
-	# bing_input = request.args.get("bing_input")
-	# search_input = str(bing_input)
-	# search_list = search(search_input)
-	# output_search = []
+	bing_input = request.args.get("bing_input")
+	search_input = str(bing_input)
+	search_list = search(search_input)
+	# print search_list
 
-	# for s in search_list:
-	# 	print "measure", s.url
-	# 	output_search += s.title, s.url, measure(s.url)
+	page_data_structure_2 = []
 
-	# output_search_split = " "
-	# for o in output_search:
-	# 	output_search_split += o.split(",")[0] + " "
-	# 	print type(output_search_split) #unicode type
-	page_data_structure = [
-		# 4 object go here, 1 for each page
-		{
-		'title': 'PuppyFind.com - Official Site', 
-		'url': 'https://www.puppyfind.com', 
-		'description': 'Directory of dog breeders with puppies for sale and dogs for adoption. Find the right breed, and the perfect puppy at PuppyFind.com.',
-		'data': '800kb'
-		},
+	for s in search_list:
+		page_data_structure_2.append({
+		'title': s.title,
+		'url': s.url,
+		'description': s.description,
+		'data': measure(s.url)
+		})
 
-		{
-		'title': 'Puppy - Wikipedia, the free encyclopedia',
-		'url': 'https://en.wikipedia.org/wiki/Puppy',
-		'description': 'A puppy is a juvenile dog. Some puppies can weigh ',
-		'data': '750kb'
-		},
-
-		{
-		'title': 'The Daily Puppy - Official Site',
-		'url': 'https://www.dailypuppy.com',
-		'description': 'Find cute puppy pictures and videos. Learn how to care for and train puppies. Submit your puppy to be the daily puppy, create profiles for you and your dogs and share ...',
-		'data': '700kb'
-		},
-
-		{
-		'title': 'New Puppy Care Tips: Puppy 101 | PetSmart',
-		'url': 'https://pets.petsmart.com/guides/puppy-center',
-		'description': 'Our puppy care center has everything a new pet parent needs! From how-to videos, new puppy checklist, food & nutrition articles, potty training tips, grooming and ...',
-		'data': '600kb'
-		}
-	]
-		
-	return render_template('bingresult.html', page_data_structure = page_data_structure)
+	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
 
 
 # search_list = search('puppy')
