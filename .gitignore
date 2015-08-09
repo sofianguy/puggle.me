@@ -1,2 +1,3 @@
 projectenv
 secrets.sh
+*.pyc
