@@ -4,26 +4,14 @@
 <a href="/bingSearchHomepage"><button type='button' id='binghomepage'>Another Search</button></a>
 
 <!-- title, description, url, kb -->
-<h3><a href="{{ page_data_structure[0]['url'] }}">{{ page_data_structure[0]['title'] }}</a></h3>
-<p>[URL] {{ page_data_structure[0]['url'] }}</p>
-<p>[description] {{ page_data_structure[0]['description'] }}</p>
-<p>data usage {{ page_data_structure[0]['data'] }}</p>
+{% for structure in page_data_structure %}
 
-<h3><a href="{{ page_data_structure[1]['url'] }}">{{ page_data_structure[1]['title'] }}</a></h3>
-<p>[URL] {{ page_data_structure[1]['url'] }}</p>
-<p>[description] {{ page_data_structure[1]['description'] }}</p>
-<p>data usage {{ page_data_structure[1]['data'] }}</p>
+<h3><a href="{{ structure['url'] }}">{{ structure['title'] }}</a></h3>
+<p>[URL] {{ structure['url'] }}</p>
+<p>[description] {{ structure['description'] }}</p>
+<p>data usage {{ structure['data'] }}</p>
 
-<h3><a href="{{ page_data_structure[2]['url'] }}">{{ page_data_structure[2]['title'] }}</a></h3>
-<p>[URL] {{ page_data_structure[2]['url'] }}</p>
-<p>[description] {{ page_data_structure[2]['description'] }}</p>
-<p>data usage {{ page_data_structure[2]['data'] }}</p>
-
-<h3><a href="{{ page_data_structure[3]['url'] }}">{{ page_data_structure[3]['title'] }}</a></h3>
-<p>[URL] {{ page_data_structure[3]['url'] }}</p>
-<p>[description] {{ page_data_structure[3]['description'] }}</p>
-<p>data usage {{ page_data_structure[3]['data'] }}</p>
-
+{% endfor %}
 
 <!-- <p>{{ bing_input }}</p> 
 <p>{{ output_search }}</p> -->
