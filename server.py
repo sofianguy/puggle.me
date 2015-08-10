@@ -4,6 +4,8 @@ from measure import measure #from measure.py file, import measure() function
 
 from bingSearch import search # from bingSearch import search
 
+from model import Bing, Website, BingWebsite, connect_to_db, db
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -33,7 +35,6 @@ def bingResult():
 	# print search_list
 
 	page_data_structure_2 = []
-
 	for s in search_list:
 		page_data_structure_2.append({
 		'title': s.title,
@@ -43,18 +44,6 @@ def bingResult():
 		})
 
 	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
-
-
-# search_list = search('puppy')
-# output_search = ""
-# for search in search_list:
-# 	output_search = search.title, search.url
-# 	print output_search
-# self.title:         title of the result
-# self.url:           the url of the result
-# self.description:   description for the result
-# self.id:            bing id for the page
-
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app
