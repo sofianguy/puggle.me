@@ -1,10 +1,10 @@
 from py_bing_search import PyBingSearch
 
-import urllib
-import requests
-
 from sys import argv
 from os import environ
+
+import urllib
+import requests
 
 bing = PyBingSearch(environ['BING_API_KEY'])
 

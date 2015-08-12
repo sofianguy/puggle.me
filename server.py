@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
+from flask_debugtoolbar import DebugToolbarExtension
 
 from measure import measure #from measure.py file, import measure() function
-
 from bingSearch import search # from bingSearch import search
+# from model import Bing, Website, BingWebsite, connect_to_db, db #from model.py import TableClasses, db
 
-from model import Bing, Website, BingWebsite, connect_to_db, db
+# from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -32,7 +33,6 @@ def bingResult():
 	bing_input = request.args.get("bing_input")
 	search_input = str(bing_input)
 	search_list = search(search_input)
-	# print search_list
 
 	page_data_structure_2 = []
 	for s in search_list:
@@ -46,6 +46,12 @@ def bingResult():
 	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
 
 if __name__ == '__main__':
-    # debug=True gives us error messages in the browser and also "reloads" our web app
-    # if we change the code.
-    app.run(debug=True)
+	# debug=True gives us error messages in the browser and also "reloads" our web app
+	# if we change the code.
+	app.run(debug=True)
+	
+	# connect_to_db(app)
+
+	# Use the DebugToolbar
+	# DebugToolbarExtension(app)
+
