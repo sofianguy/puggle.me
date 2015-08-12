@@ -2,36 +2,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Search(db.Model):
-
-	__tablename__ = "Searches"
-
-	id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	search = db.Column(db.Text(), nullable=False)
-	datetime = db.Column(db.Integer, nullable=False)
-
-	results = db.relationship('Result', backref=db.backref('search'))
-#backref is: on other table, what you call this table: "search"
-#backref is not case sensitive(table name)
-
-class Website(db.Model):
-
-	__tablename__ = "Websites"
-
-	url = db.Column(db.Text(), nullable=False, primary_key=True)
-	title = db.Column(db.String, nullable=False)
-	description = db.Column(db.String(200), nullable=False)
-	
-	results = db.relationship('Result', backref=db.backref('website'))
-
 class Result(db.Model):
 
 	__tablename__ = "Results"
 
 	id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	website_id = db.Column(db.Text(), ForeignKey('Website.url'), nullable=False)
-	search_id = db.Column(db.Integer, ForeignKey('Search.id'), nullable=False)
+	url = db.Column(db.Text(), nullable=False)
 	size = db.Column(db.Integer, nullable=False)
+	datetime = db.Column(db.Integer, nullable=False)
 
 # Helper functions
 def connect_to_db(app):
