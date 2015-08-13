@@ -6,7 +6,7 @@ from bingSearch import search # from bingSearch.py import search() function
 
 from model import Result, connect_to_db, db
 
-# import datetime
+from datetime import datetime
 
 from sqlalchemy import update
 
@@ -26,12 +26,11 @@ def dataoutcome():
 	user_input_url = request.args.get("url-input")
 	website_url = "https://" + user_input_url
 	data_measure = measure("https://" + user_input_url) #calling measure() function
-	# datetime = datetime.utcnow
+	data_datetime = datetime.utcnow()
 
-	user_input_to_db = Result(url = website_url, size = data_measure)
+	user_input_to_db = Result(url = website_url, size = data_measure, datetime=data_datetime)
 	db.session.add(user_input_to_db)
 	db.session.commit()
-
 
 	return render_template('data-result.html', website_url = website_url, 
 		data_measure = data_measure)
@@ -56,11 +55,25 @@ def bingResult():
 		'data': measure(s.url)
 		})
 
+	for i in page_data_structure_2:
+		print i
+		bing_result_url_db = i['url']
+		bing_result_data_db = i['data']
+		bing_result_datetime_db = datetime.utcnow()
+
+		bing_result_to_db = Result(url = bing_result_url_db, size = bing_result_data_db, 
+			datetime = bing_result_datetime_db)
+		db.session.add(bing_result_to_db)
+		db.session.commit()
+
 	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
+
+
 
 if __name__ == '__main__':
 	# debug=True gives us error messages in the browser and also "reloads" our web app
 	# if we change the code.
+
 	connect_to_db(app)
 	app.run(debug=True)
 

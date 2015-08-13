@@ -9,7 +9,7 @@ class Result(db.Model):
 	id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	url = db.Column(db.Text(), nullable=False)
 	size = db.Column(db.Integer, nullable=False)
-	# datetime = db.Column(db.Integer, nullable=False)
+	datetime = db.Column(db.Integer, nullable=False)
 
 
 # Helper functions
@@ -29,4 +29,5 @@ if __name__ == "__main__":
 	from server import app
 
 	connect_to_db(app)
+	print "connected to db"
 	db.create_all()
