@@ -5,7 +5,7 @@ def measure(url):
     args = ['phantomjs', '--ssl-protocol=any', '--web-security=false', 'dataMeasure.js', url]
     # (Terminal)
     # $ phantomjs --ssl-protocol=any --web-security=false phantom-measure.js "http://google.com"
-    #PIPE used for phantom.py and phantom-measure.js to talk to each other
+    #PIPE used for measure.py and dataMeasure.js to talk to each other
     proc = Popen(args, stdout=PIPE, stderr=2)
     #popen - run another program from this program; run in terminal
 

@@ -28,12 +28,17 @@ def dataoutcome():
 	data_measure = measure("https://" + user_input_url) #calling measure() function
 	data_datetime = datetime.utcnow()
 
+	#if not a website url, show error "not a website url"
+	#if it IS a url, do a Bing search
+	# if ".com" not in user_input_url:
+	# 	error_message = "That is not a url"
+
 	user_input_to_db = Result(url = website_url, size = data_measure, datetime=data_datetime)
 	db.session.add(user_input_to_db)
 	db.session.commit()
 
 	return render_template('data-result.html', website_url = website_url, 
-		data_measure = data_measure)
+		data_measure = data_measure, )
 
 @app.route('/bingHomepage')
 def bingsearch():
