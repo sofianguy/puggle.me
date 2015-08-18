@@ -61,7 +61,6 @@ def bingResult():
 		})
 
 	for i in page_data_structure_2:
-		print i
 		bing_result_url_db = i['url']
 		bing_result_data_db = i['data']
 		bing_result_datetime_db = datetime.utcnow()

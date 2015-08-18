@@ -1,52 +1,49 @@
-// https://stackoverflow.com/questions/19786525/how-to-list-loaded-resources-with-selenium-phantomjs
-
-// getResources.js
-// Usage:
-// ./phantomjs --ssl-protocol=any --web-security=false getResources.js your_url
-// the ssl-protocol and web-security flags are added to dismiss SSL errors
-
 var page = require('webpage').create();
 var system = require('system');
 
-var error = function (str) {
-  system.stderr.write(String(str) + '\n');
+page.onResourceRequested = function(request) {
+  //request is an object
+  // console.log('Request ' + JSON.stringify(request, undefined, 4));
 };
 
-var stats = {
-  size  : 0,
-  files : 0,
-};
+// //Show contentType and bodySize
+// var contentTypeArray = []
+// var bodySizeArray = []
+// page.onResourceReceived = function(response) {
+//  contentTypeArray.push(response.contentType)
+//  bodySizeArray.push(response.bodySize)
+// };
 
-// Listen for all requests made by the webpage,
-// (like the 'Network' tab of Chrome developper tools)
-// and add them to an array
-page.onResourceRequested = function(request, networkRequest) {
-  stats.files++
-};
+// page.onLoadFinished = function(status) {
+//  for (var i=0; i < contentTypeArray.length; i++) {
+//    console.log(contentTypeArray[i], bodySizeArray[i]);
+//  };
+//  console.log(contentTypeArray.length)
+//  //shows how many files(requests) there are
 
+//  phantom.exit();
+// };
+
+// //Shows total bodySize values
+var bodySizeArray = []
 page.onResourceReceived = function(response) {
-  if (response.redirectURL && response.stage == 'start') {
-    error('Redirect: ' + response.redirectURL)
-  }
-  if (response.bodySize) {
-    stats.size += response.bodySize
-  }
+  //response is an object. I want the bodySize property
+  bodySizeArray.push(response.bodySize)
 };
 
-// When all requests are made, output the array to the console
 page.onLoadFinished = function(status) {
-  console.log(JSON.stringify(stats)); //turn stats(dict) into a string via JSON
-  //console.log() writes to standardOut(stdout)
-  phantom.exit(0);
+  var bodySizeTotal = 0
+  for (var i=0; i < bodySizeArray.length; i++) {
+    if (bodySizeArray[i] === undefined) {
+    //if undefined, continue to else statement
+    } else {
+      bodySizeTotal += bodySizeArray[i];
+      //add up all values from bodySize
+    }
+  };
+  console.log(bodySizeTotal);
+
+  phantom.exit();
 };
 
-page.onResourceError = function(e){
-  error('ResourceError: ' + e.errorString + JSON.stringify(e))
-  return false;
-}
-page.onError = function(e){
-  return false;
-}
-
-// Open the web page
 page.open(system.args[1]);
