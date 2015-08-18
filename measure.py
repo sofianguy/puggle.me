@@ -16,5 +16,6 @@ def measure(url):
     #data_result shown in bytes
 
     data_result_kb = int(data_result) / 1000
+    str_data_result_kb = str(data_result_kb) + " kilobytes"
 
-    return data_result_kb
+    return str_data_result_kb
