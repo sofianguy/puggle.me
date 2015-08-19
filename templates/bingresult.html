@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<a href="/bingHomepage"><button type='button' id='binghomepage'>Another Search</button></a>
-<a href="/"><button type='button' id='homepage'>Enter URL</button></a>
-<!-- title, description, url, kb -->
+<a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
+
 {% for structure in page_data_structure %}
 
-<h3><a href="{{ structure['url'] }}">{{ structure['title'] }}</a></h3>
-<p>[URL] {{ structure['url'] }}</p>
-<p>[description] {{ structure['description'] }}</p>
-<p id='bing_data_usage'>data usage {{ structure['data'] }}</p>
+	<h3><a href="{{ structure['url'] }}">{{ structure['title'] }}</a></h3>
+	<p>[URL] {{ structure['url'] }}</p>
+	<p>[description] {{ structure['description'] }}</p>
+	<p id='bing_data_usage'>data usage {{ structure['dsize'] }}</p>
 
 {% endfor %}
 
