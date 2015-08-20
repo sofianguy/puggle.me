@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from measure import measure #from measure.py file, import measure() function
 from bingSearch import search # from bingSearch.py import search() function
 
-from model import Result, connect_to_db, db
+from model import Result, connect_to_db, db #database stuff
 
 from datetime import datetime
 
@@ -36,6 +36,7 @@ def bingResult():
 		'dsize': measure(s.url)
 		})
 
+	#adds results to database
 	for i in page_data_structure_2:
 		bing_result_url_db = i['url']
 		bing_result_data_db = i['dsize']
