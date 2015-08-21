@@ -45,12 +45,8 @@ def bingResult():
 	print "measuring", url_list
 	measured_url_list = measure(url_list)
 
-	page_data_structure_2[0]['dsize'] = measured_url_list[0]
-	page_data_structure_2[1]['dsize'] = measured_url_list[1]
-	page_data_structure_2[2]['dsize'] = measured_url_list[2]
-	page_data_structure_2[3]['dsize'] = measured_url_list[3]
-	page_data_structure_2[4]['dsize'] = measured_url_list[4]
-
+	for i in range(len(page_data_structure_2)):
+		page_data_structure_2[i]['dsize'] = measured_url_list[i]
 
 	#adds results to database
 	# for i in page_data_structure_2:
