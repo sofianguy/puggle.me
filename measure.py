@@ -13,7 +13,8 @@ def create_process(url):
 def read_proc_results(proc):
     data_result = proc.stdout.readline()
 
-    #try this: , except
+    # try this ,except when there's a ValueError
+    # When there's a ValueError, do this instead
     try:
         data_result_kb = int(data_result) / 1000
         if data_result_kb == 0:
@@ -21,7 +22,7 @@ def read_proc_results(proc):
         else:
             str_data_result_kb = "%0.1f kilobytes" % data_result_kb
     except ValueError:
-        str_data_result_kb = "unknown data result"
+        str_data_result_kb = "unknown"
 
     return str_data_result_kb
 
@@ -44,5 +45,3 @@ def measure(url_list):
 
     # return results (list of websites' sizes)
     return results
-
-# print measure(['https://yahoo.com', 'https://apple.com'])

@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Welcome</h1>
-
-<form action='/result'>
-	<input type='text' placeholder='What would you like to search?' name='bing_input' 
-	id='bing_input'>
-	<input type='submit' id='submit-button'>
-</form>
+<div id="mikel-logo">Puggle.me logo here</div>
+<div id='homepage'>
+	<h1>Welcome</h1>
+	<form action='/result' id='search-box'>
+		<input type='text' placeholder='What would you like to search?' name='bing_input' 
+		id='bing_input'>
+		<button type="submit" id='submit-button'>Search</button>
+	</form>
+</div>
 
 {% endblock %}

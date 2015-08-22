@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
+<div id="mikel-logo">Puggle.me logo here</div>
+<br>
 
+<a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
+<div id="result_page">
 {% for structure in page_data_structure %}
 
 	<h3><a href="{{ structure['url'] }}">{{ structure['title'] }}</a></h3>
 	<p>[URL] {{ structure['url'] }}</p>
 	<p>[description] {{ structure['description'] }}</p>
-	<p id='bing_data_usage'>data usage: {{ structure['dsize'] }}</p>
+	<p id='bing_data_usage'>website data usage: {{ structure['dsize'] }}</p>
 
 {% endfor %}
+</div>
 
 {% endblock %}

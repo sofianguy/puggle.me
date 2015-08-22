@@ -1,6 +1,22 @@
-#url-input {
-	width: 400px;
-	height: 50px;
+#mikel-logo {
+	width: 320px;
+	padding: 10px;
+	border: 5px solid black;
+	margin: 0; 
+}
+
+#homepage {
+	position: absolute;
+	top: 50%;
+	left: 25%;
+	margin-top: -75px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1 {
+	color: blue;
+	text-align: center;
 }
 
 input[type="text"] {
@@ -21,3 +37,11 @@ input[type="text"] {
 	font-style: italic;
 	font-size: 30px;
 }
+
+#result_page {
+	margin-left: auto;
+	margin-right: auto;
+	top: 50%;
+	left: 50%;
+}​
+

@@ -6,6 +6,8 @@ from measure import create_process, read_proc_results, measure
 
 from bingSearch import search # from bingSearch.py import search() function
 
+from twilio import twiml
+
 from model import Result, connect_to_db, db #database stuff
 
 from datetime import datetime
@@ -18,7 +20,7 @@ conn = sqlite3.connect('datauseresult.db') #connects to database called 'websize
 app = Flask(__name__)
 
 @app.route('/')
-def bingsearch():
+def bingSearch():
 
 	return render_template('bingsearchhome.html')
 
@@ -35,7 +37,6 @@ def bingResult():
 		'title': s.title,
 		'url': s.url,
 		'description': s.description,
-		# 'dsize': measure(s.url)
 		})
 
 	url_list = []
@@ -61,6 +62,38 @@ def bingResult():
 
 	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
 
+@app.route('/twilioTest', methods=['POST'])
+def twilioTest():
+	text_body = request.values.get('Body')
+	result_of_search_text_input = search(text_body)
+	print result_of_search_text_input
+
+	twilio_foo = []
+	for each in result_of_search_text_input:
+		twilio_foo.append({
+			'url':each.url
+			})
+
+	url_list = []
+	for i in twilio_foo:
+		url_list.append(i['url'])
+
+	print "measuring", url_list
+	measured_url_list = measure(url_list)
+
+	for i in range(len(twilio_foo)):
+		twilio_foo[i]['dsize'] = measured_url_list[i]
+
+	result_message_to_user = ""
+	for each in twilio_foo:
+		result_message_to_user += each['url'] + " "
+		result_message_to_user += each['dsize'] + "\n"
+	print result_message_to_user
+	
+	resp = twiml.Response()
+	resp.message(result_message_to_user)
+
+	return str(resp)
 
 if __name__ == '__main__':
 	# debug=True gives us error messages in the browser and also "reloads" our web app
