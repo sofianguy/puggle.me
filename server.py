@@ -35,6 +35,7 @@ def bingResult():
 	page_data_structure_2 = []
 	for s in search_list:
 		result = Result.query.filter_by(url=s.url).first()
+		# if not None
 		if result:
 			result_objects.append(result)
 		else:
@@ -59,10 +60,10 @@ def bingResult():
 		# bing_result_url_db = i['url']
 		# bing_result_data_db = i['dsize']
 		# bing_result_datetime_db = datetime.utcnow()
-
 		bing_result_to_db = Result(url=page_data['url'], size=page_data['dsize'], 
 			datetime=datetime.utcnow(), description=page_data['description'])
 		db.session.add(bing_result_to_db)
+		# **appends results to db
 		result_objects.append(bing_result_to_db)
 	db.session.commit()
 
