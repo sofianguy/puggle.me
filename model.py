@@ -8,6 +8,7 @@ class Result(db.Model):
 
 	id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	url = db.Column(db.Text(), nullable=False)
+	description = db.Column(db.String(300), nullable=True)
 	size = db.Column(db.Integer, nullable=False)
 	datetime = db.Column(db.Integer, nullable=False)
 

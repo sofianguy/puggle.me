@@ -31,7 +31,7 @@ page.onResourceReceived = function(response) {
   bodySizeArray.push(response.bodySize)
 };
 
-page.onLoadFinished = function(status) {
+function addSizesAndQuit(status) {
   var bodySizeTotal = 0
   for (var i=0; i < bodySizeArray.length; i++) {
     if (bodySizeArray[i] === undefined) {
@@ -45,5 +45,25 @@ page.onLoadFinished = function(status) {
 
   phantom.exit();
 };
+
+// function notDoneAddSizesAndQuit(status) {
+//   var bodySizeTotal = 0
+//   for (var i=0; i < bodySizeArray.length; i++) {
+//     if (bodySizeArray[i] === undefined) {
+//     //if undefined, continue to else statement
+//     } else {
+//       bodySizeTotal += bodySizeArray[i];
+//       //add up all values from bodySize
+//     }
+//   };
+//   console.log(bodySizeTotal);
+
+//   phantom.exit();
+// };
+
+page.onLoadFinished = addSizesAndQuit
+
+// runAfter(10000, addSizesAndQuit)
+// setTimeout(notDoneAddSizesAndQuit, 10000)
 
 page.open(system.args[1]);

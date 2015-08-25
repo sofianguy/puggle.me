@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from measure import create_process, read_proc_results, measure 
 # from measure.py file, import these functions
 
-from bingSearch import search # from bingSearch.py import search() function
+from bingSearch import search3, search5 # from bingSearch.py import search() function
 
 from twilio import twiml
 
@@ -29,19 +29,24 @@ def bingResult():
 	bing_input = request.args.get("bing_input")
 	# bing_input is unicode
 	search_input = str(bing_input)
-	search_list = search(search_input)
+	search_list = search5(search_input)
 
+	result_objects = []
 	page_data_structure_2 = []
 	for s in search_list:
-		page_data_structure_2.append({
-		'title': s.title,
-		'url': s.url,
-		'description': s.description,
-		})
+		result = Result.query.filter_by(url=s.url).first()
+		if result:
+			result_objects.append(result)
+		else:
+			page_data_structure_2.append({
+			'title': s.title,
+			'url': s.url,
+			'description': s.description,
+			})
 
 	url_list = []
-	for i in page_data_structure_2:
-		url_list.append(i['url'])
+	for page_data in page_data_structure_2:
+		url_list.append(page_data['url'])
 
 	print "measuring", url_list
 	measured_url_list = measure(url_list)
@@ -49,23 +54,24 @@ def bingResult():
 	for i in range(len(page_data_structure_2)):
 		page_data_structure_2[i]['dsize'] = measured_url_list[i]
 
-	#adds results to database
-	# for i in page_data_structure_2:
-	# 	bing_result_url_db = i['url']
-	# 	bing_result_data_db = i['dsize']
-	# 	bing_result_datetime_db = datetime.utcnow()
+	# adds results to database
+	for page_data in page_data_structure_2:
+		# bing_result_url_db = i['url']
+		# bing_result_data_db = i['dsize']
+		# bing_result_datetime_db = datetime.utcnow()
 
-	# 	bing_result_to_db = Result(url = bing_result_url_db, size = bing_result_data_db, 
-	# 		datetime = bing_result_datetime_db)
-	# 	db.session.add(bing_result_to_db)
-	# 	db.session.commit()
+		bing_result_to_db = Result(url=page_data['url'], size=page_data['dsize'], 
+			datetime=datetime.utcnow(), description=page_data['description'])
+		db.session.add(bing_result_to_db)
+		result_objects.append(bing_result_to_db)
+	db.session.commit()
 
-	return render_template('bingresult.html', page_data_structure = page_data_structure_2)
+	return render_template('bingresult.html', results=result_objects)
 
 @app.route('/twilioTest', methods=['POST'])
 def twilioTest():
 	text_body = request.values.get('Body')
-	result_of_search_text_input = search(text_body)
+	result_of_search_text_input = search3(text_body)
 	print result_of_search_text_input
 
 	twilio_foo = []
@@ -89,11 +95,23 @@ def twilioTest():
 		result_message_to_user += each['url'] + " "
 		result_message_to_user += each['dsize'] + "\n"
 	print result_message_to_user
-	
+
 	resp = twiml.Response()
 	resp.message(result_message_to_user)
 
-	return str(resp)
+	for i in twilio_foo:
+		bing_result_url_db = i['url']
+		bing_result_data_db = i['dsize']
+
+		bing_result_datetime_db = datetime.utcnow()
+
+		bing_result_to_db = Result(url = bing_result_url_db, size = bing_result_data_db, 
+			datetime = bing_result_datetime_db)
+		db.session.add(bing_result_to_db)
+		db.session.commit()
+
+		return str(resp)
+
 
 if __name__ == '__main__':
 	# debug=True gives us error messages in the browser and also "reloads" our web app
