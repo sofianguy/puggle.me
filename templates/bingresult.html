@@ -4,15 +4,20 @@
 <div id="mikel-logo">Puggle.me logo here</div>
 <br>
 
-<a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
-<div id="result_page">
+<!-- <a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
+<div id="result_page"> -->
+<form action='/result' id='search-box'>
+	<input type='text' placeholder='What else would you like to search?' name='bing-input' 
+	id='bing-input-from-results'>
+	<button type="submit" id='submit-button-results'>Search</button>
+</form>
 
 {% for structure in results %}
 
 	<h3><a href="{{ structure.url }}">{{ structure.url }}</a></h3>
 	<p>[URL] {{ structure.url }}</p>
 	<p>[description] {{ structure.description }}</p>
-	<p id='bing_data_usage'>website data usage: {{ structure.size }}</p>
+	<p id='bing-data-usage'>website data usage: {{ structure.size }}</p>
 
 {% endfor %}
 </div>

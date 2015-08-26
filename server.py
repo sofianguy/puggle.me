@@ -26,7 +26,7 @@ def bingSearch():
 
 @app.route('/result')
 def bingResult():
-	bing_input = request.args.get("bing_input")
+	bing_input = request.args.get("bing-input")
 	# bing_input is unicode
 	search_input = str(bing_input)
 	search_list = search5(search_input)

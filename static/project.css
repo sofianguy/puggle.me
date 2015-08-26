@@ -28,17 +28,22 @@ input[type="text"] {
 	height: 50px;
 }
 
-#bing_input {
+#bing-input {
 	width: 400px;
 	height: 50px;
 }
 
-#bing_data_usage {
+#bing-input-from-results {
+	width: 400px;
+	height: 50px;
+}
+
+#bing-data-usage {
 	font-style: italic;
 	font-size: 30px;
 }
 
-#result_page {
+#result-page {
 	margin-left: auto;
 	margin-right: auto;
 	top: 50%;
