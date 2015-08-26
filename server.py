@@ -63,9 +63,12 @@ def bingResult():
 		bing_result_to_db = Result(url=page_data['url'], size=page_data['dsize'], 
 			datetime=datetime.utcnow(), description=page_data['description'])
 		db.session.add(bing_result_to_db)
-		# **appends results to db
+		# **appends results to db**
 		result_objects.append(bing_result_to_db)
+	# then commits to database
 	db.session.commit()
+
+	print "********", result_objects
 
 	return render_template('bingresult.html', results=result_objects)
 
@@ -75,11 +78,16 @@ def twilioTest():
 	result_of_search_text_input = search3(text_body)
 	print result_of_search_text_input
 
+	result_objects = []
 	twilio_foo = []
 	for each in result_of_search_text_input:
-		twilio_foo.append({
-			'url':each.url
-			})
+		result = Result.query.filter_by(url=each.url).first()
+		if result:
+			result_objects.append(result)
+		else:
+			twilio_foo.append({
+				'url':each.url
+				})
 
 	url_list = []
 	for i in twilio_foo:
@@ -91,27 +99,26 @@ def twilioTest():
 	for i in range(len(twilio_foo)):
 		twilio_foo[i]['dsize'] = measured_url_list[i]
 
-	result_message_to_user = ""
 	for each in twilio_foo:
-		result_message_to_user += each['url'] + " "
-		result_message_to_user += each['dsize'] + "\n"
+		# bing_result_url_db = i['url']
+		# bing_result_data_db = i['dsize']
+		# bing_result_datetime_db = datetime.utcnow()
+		bing_result_to_db = Result(url=each['url'], size=each['dsize'], 
+			datetime=datetime.utcnow(), description=each['description'])
+		db.session.add(bing_result_to_db)
+		result_objects.append(bing_result_to_db)
+	db.session.commit()
+
+	result_message_to_user = ""
+	for each in result_objects:
+		result_message_to_user += each.url + " "
+		result_message_to_user += each.size + "\n"
 	print result_message_to_user
 
 	resp = twiml.Response()
 	resp.message(result_message_to_user)
 
-	for i in twilio_foo:
-		bing_result_url_db = i['url']
-		bing_result_data_db = i['dsize']
-
-		bing_result_datetime_db = datetime.utcnow()
-
-		bing_result_to_db = Result(url = bing_result_url_db, size = bing_result_data_db, 
-			datetime = bing_result_datetime_db)
-		db.session.add(bing_result_to_db)
-		db.session.commit()
-
-		return str(resp)
+	return str(resp)
 
 
 if __name__ == '__main__':
