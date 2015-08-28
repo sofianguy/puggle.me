@@ -65,5 +65,6 @@ page.onLoadFinished = addSizesAndQuit
 
 // runAfter(10000, addSizesAndQuit)
 // setTimeout(notDoneAddSizesAndQuit, 10000)
+setTimeout(addSizesAndQuit, 15000);
 
 page.open(system.args[1]);

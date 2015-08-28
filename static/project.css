@@ -8,14 +8,17 @@
 #homepage {
 	top: 50%;
 	left: 25%;
-	margin-top: -75px;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
+	padding-top: 200px;
+    padding-right: 50px;
+    padding-bottom: 200px;
+    padding-left: 50px;
 }
 
 #puggle-me-home {
-	text-align: center;
-	margin-bottom: -50px;
+	width: 350px;
 }
 
 input[type="text"] {
@@ -23,8 +26,10 @@ input[type="text"] {
 }
 
 #submit-button {
-	width: 100px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
+	font-size: 14px;
+	font-family: sans-serif;
 }
 
 #bing-input {

@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-# from flask_debugtoolbar import DebugToolbarExtension
 
 from measure import create_process, read_proc_results, measure 
 # from measure.py file, import these functions
@@ -124,11 +123,7 @@ def twilioTest():
 if __name__ == '__main__':
 	# debug=True gives us error messages in the browser and also "reloads" our web app
 	# if we change the code.
-
 	connect_to_db(app)
 	app.run(debug=True)
-
-	# Use the DebugToolbar
-	# DebugToolbarExtension(app)
 
 	# app.run()
