@@ -6,7 +6,6 @@
 }
 
 #homepage {
-	position: absolute;
 	top: 50%;
 	left: 25%;
 	margin-top: -75px;
@@ -14,9 +13,9 @@
 	margin-right: auto;
 }
 
-h1 {
-	color: blue;
+#puggle-me-home {
 	text-align: center;
+	margin-bottom: -50px;
 }
 
 input[type="text"] {

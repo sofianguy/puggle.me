@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="mikel-logo">Puggle.me logo here</div>
+<a href="/"><div id="mikel-logo">Puggle.me logo here</div></a>
 <br>
 
-<!-- <a href="/"><button type='button' id='binghomepage'>Another Search</button></a>
-<div id="result_page"> -->
 <form action='/result' id='search-box'>
-	<input type='text' placeholder='What else would you like to search?' name='bing-input' 
+	<input type='text' placeholder='What else would you like to search?' name='bing_input' 
 	id='bing-input-from-results'>
 	<button type="submit" id='submit-button-results'>Search</button>
 </form>

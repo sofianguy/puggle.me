@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 # from flask_debugtoolbar import DebugToolbarExtension
 
 from measure import create_process, read_proc_results, measure 
 # from measure.py file, import these functions
 
-from bingSearch import search3, search5 # from bingSearch.py import search() function
+from bingSearch import search3, search5 # from bingSearch.py import search() functions
 
 from twilio import twiml
 
@@ -26,9 +26,13 @@ def bingSearch():
 
 @app.route('/result')
 def bingResult():
-	bing_input = request.args.get("bing-input")
+	bing_input = request.args.get("bing_input")
 	# bing_input is unicode
 	search_input = str(bing_input)
+	# if user doesn't type anything in search box
+	if search_input == "":
+		return redirect('/')
+
 	search_list = search5(search_input)
 
 	result_objects = []
@@ -86,7 +90,9 @@ def twilioTest():
 			result_objects.append(result)
 		else:
 			twilio_foo.append({
-				'url':each.url
+				'title': each.title,
+				'url': each.url,
+				'description': each.description
 				})
 
 	url_list = []
