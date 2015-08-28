@@ -61,9 +61,6 @@ def bingResult():
 
 	# adds results to database
 	for page_data in page_data_structure_2:
-		# bing_result_url_db = i['url']
-		# bing_result_data_db = i['dsize']
-		# bing_result_datetime_db = datetime.utcnow()
 		bing_result_to_db = Result(url=page_data['url'], size=page_data['dsize'], 
 			datetime=datetime.utcnow(), description=page_data['description'])
 		db.session.add(bing_result_to_db)
@@ -71,8 +68,6 @@ def bingResult():
 		result_objects.append(bing_result_to_db)
 	# then commits to database
 	db.session.commit()
-
-	print "********", result_objects
 
 	return render_template('bingresult.html', results=result_objects)
 
@@ -106,9 +101,6 @@ def twilioTest():
 		twilio_foo[i]['dsize'] = measured_url_list[i]
 
 	for each in twilio_foo:
-		# bing_result_url_db = i['url']
-		# bing_result_data_db = i['dsize']
-		# bing_result_datetime_db = datetime.utcnow()
 		bing_result_to_db = Result(url=each['url'], size=each['dsize'], 
 			datetime=datetime.utcnow(), description=each['description'])
 		db.session.add(bing_result_to_db)
