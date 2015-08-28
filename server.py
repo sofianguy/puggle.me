@@ -39,7 +39,7 @@ def bingResult():
 	page_data_structure_2 = []
 	for s in search_list:
 		result = Result.query.filter_by(url=s.url).first()
-		# if not None
+		# if result is not True (meaning it has a query)
 		if result:
 			result_objects.append(result)
 		else:
@@ -111,6 +111,8 @@ def twilioTest():
 	for each in result_objects:
 		result_message_to_user += each.url + " "
 		result_message_to_user += each.size + "\n"
+	
+	# See message before sending SMS
 	print result_message_to_user
 
 	resp = twiml.Response()
