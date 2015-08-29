@@ -42,6 +42,9 @@ input[type="text"] {
 	height: 50px;
 }
 
+#puggle-me-result {
+	width: 200px;
+}
 #bing-data-usage {
 	font-style: italic;
 	font-size: 30px;
