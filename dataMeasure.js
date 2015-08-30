@@ -22,7 +22,9 @@ function addSizesAndQuit(status) {
       //add up all values from bodySize
     }
   };
-  console.log("addSizesAndQuit", bodySizeTotal);
+  data_result = {'program': "complete", 'total': bodySizeTotal}
+  data_result_json = JSON.stringify(data_result)
+  console.log(data_result_json);
 
   // shuts program down
   phantom.exit();
@@ -38,7 +40,9 @@ function addSizesSetTimeout(status) {
       //add up all values from bodySize
     }
   };
-  console.log("setTimeout:", bodySizeTotal);
+  data_result = {'program': "setTimeout", 'total': bodySizeTotal}
+  data_result_json = JSON.stringify(data_result)
+  console.log(data_result_json);
 
   // shuts program down
   phantom.exit();

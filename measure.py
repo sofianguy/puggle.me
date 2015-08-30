@@ -1,5 +1,6 @@
 from subprocess import Popen, PIPE
 #PIPE used so that measure.py and dataMeasure.js can talk to each other
+import json
 
 def create_process(url):
     args = ['phantomjs', 'dataMeasure.js', url]
@@ -11,20 +12,27 @@ def create_process(url):
     return proc
 
 def read_proc_results(proc):
+    #read result from process (phantomjs dataMeasure.js http://github.com)
     data_result = proc.stdout.readline()
+    data_result_json = json.loads(data_result) #returns {u'total': 137433, u'program': u'complete'}
 
-    # try this ,except when there's a ValueError
-    # When there's a ValueError, do this instead
-    try:
-        data_result_kb = int(data_result) / 1000
-        if data_result_kb == 0:
-            str_data_result_kb = "under 1 kilobyte"
-        else:
-            str_data_result_kb = "%0.1f kilobytes" % data_result_kb
-    except ValueError:
-        str_data_result_kb = "unknown"
+    if data_result_json['program'] == "complete":
+        data_result_kb = data_result_json['total'] / 1000
+        # try this ,except when there's a ValueError
+        # When there's a ValueError, do this instead
+        try:
+            if data_result_kb == 0:
+                str_data_result_kb = "under 1 kilobyte"
+            else:
+                str_data_result_kb = "%0.1f kilobytes" % data_result_kb
+        except ValueError:
+            str_data_result_kb = "unknown"
+
+    elif data_result_json['program'] == "setTimeout":
+        str_data_result_kb = ">" + str(data_result_json['total']/1000) + "kilobytes"
 
     return str_data_result_kb
+    
 
 def measure(url_list):
     processes = []
@@ -45,3 +53,7 @@ def measure(url_list):
 
     # return results (list of websites' sizes)
     return results
+
+print measure(['https://yahoo.com', 'https://apple.com'])
+
+
