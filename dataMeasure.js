@@ -52,7 +52,7 @@ function addSizesSetTimeout(status) {
 page.onLoadFinished = addSizesAndQuit
 
 // run addSizesSetTimeout after 10 seconds
-setTimeout(addSizesSetTimeout, 10000);
+setTimeout(addSizesSetTimeout, 9500);
 
 // program doesn't start until page.open() is called
 page.open(system.args[1]);
