@@ -54,6 +54,3 @@ def measure(url_list):
     # return results (list of websites' sizes)
     return results
 
-print measure(['https://yahoo.com', 'https://apple.com'])
-
-
