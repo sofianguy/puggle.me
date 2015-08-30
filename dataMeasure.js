@@ -1,10 +1,9 @@
+// use JavaScript to use PhantomJS API. 
+// .create() is PhantomJS specific; opens webpage
+// require('webpage') is a function that returns an object
+// .create() is a property of require('webpage'); .create is a method, until called
 var page = require('webpage').create();
 var system = require('system');
-
-page.onResourceRequested = function(request) {
-  //request is an object
-  // console.log('Request ' + JSON.stringify(request, undefined, 4));
-};
 
 // //Show contentType and bodySize
 // var contentTypeArray = []
@@ -41,30 +40,33 @@ function addSizesAndQuit(status) {
       //add up all values from bodySize
     }
   };
-  console.log(bodySizeTotal);
+  console.log("addSizesAndQuit", bodySizeTotal);
 
+  // shuts program down
   phantom.exit();
 };
 
-// function notDoneAddSizesAndQuit(status) {
-//   var bodySizeTotal = 0
-//   for (var i=0; i < bodySizeArray.length; i++) {
-//     if (bodySizeArray[i] === undefined) {
-//     //if undefined, continue to else statement
-//     } else {
-//       bodySizeTotal += bodySizeArray[i];
-//       //add up all values from bodySize
-//     }
-//   };
-//   console.log(bodySizeTotal);
+function addSizesSetTimeout(status) {
+  var bodySizeTotal = 0
+  for (var i=0; i < bodySizeArray.length; i++) {
+    if (bodySizeArray[i] === undefined) {
+    //if undefined, continue to else statement
+    } else {
+      bodySizeTotal += bodySizeArray[i];
+      //add up all values from bodySize
+    }
+  };
+  console.log("setTimeout:", bodySizeTotal);
 
-//   phantom.exit();
-// };
+  // shuts program down
+  phantom.exit();
+};
 
+// setting up computation
 page.onLoadFinished = addSizesAndQuit
 
-// runAfter(10000, addSizesAndQuit)
-// setTimeout(notDoneAddSizesAndQuit, 10000)
-setTimeout(addSizesAndQuit, 15000);
+// run addSizesSetTimeout after 10 seconds
+setTimeout(addSizesSetTimeout, 10000);
 
+// program doesn't start until page.open() is called
 page.open(system.args[1]);
