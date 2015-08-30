@@ -5,24 +5,6 @@
 var page = require('webpage').create();
 var system = require('system');
 
-// //Show contentType and bodySize
-// var contentTypeArray = []
-// var bodySizeArray = []
-// page.onResourceReceived = function(response) {
-//  contentTypeArray.push(response.contentType)
-//  bodySizeArray.push(response.bodySize)
-// };
-
-// page.onLoadFinished = function(status) {
-//  for (var i=0; i < contentTypeArray.length; i++) {
-//    console.log(contentTypeArray[i], bodySizeArray[i]);
-//  };
-//  console.log(contentTypeArray.length)
-//  //shows how many files(requests) there are
-
-//  phantom.exit();
-// };
-
 // //Shows total bodySize values
 var bodySizeArray = []
 page.onResourceReceived = function(response) {
@@ -70,3 +52,22 @@ setTimeout(addSizesSetTimeout, 10000);
 
 // program doesn't start until page.open() is called
 page.open(system.args[1]);
+
+
+// //Show contentType and bodySize
+// var contentTypeArray = []
+// var bodySizeArray = []
+// page.onResourceReceived = function(response) {
+//  contentTypeArray.push(response.contentType)
+//  bodySizeArray.push(response.bodySize)
+// };
+
+// page.onLoadFinished = function(status) {
+//  for (var i=0; i < contentTypeArray.length; i++) {
+//    console.log(contentTypeArray[i], bodySizeArray[i]);
+//  };
+//  console.log(contentTypeArray.length)
+//  //shows how many files(requests) there are
+
+//  phantom.exit();
+// };
