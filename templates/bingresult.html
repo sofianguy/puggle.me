@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+<body id="result-body">
+	<div id="puggle-search-box-result">
+	<a href="/"><img src="../static/puggle-me.png" id="puggle-me-result"></a>
 
-<a href="/"><img src="../static/FullTitleTransparent.png" id="puggle-me-result"></a>
+	<form action='/result'>
+		<input type='text' placeholder='What else would you like to search?' name='bing_input' 
+		id='result-search-box'>
+		<button type="submit" id='submit-button-results'>Search</button>
+	</form>
+	</div>
 
-<form action='/result' id='search-box'>
-	<input type='text' placeholder='What else would you like to search?' name='bing_input' 
-	id='bing-input-from-results'>
-	<button type="submit" id='submit-button-results'>Search</button>
-</form>
+	<div id="bing-search-results-outputs">
+	{% for structure in results %}
 
-{% for structure in results %}
-
-	<h3><a href="{{ structure.url }}" target="_blank">{{ structure.url }}</a></h3>
-	<p>[URL] {{ structure.url }}</p>
-	<p>[description] {{ structure.description }}</p>
-	<p id='bing-data-usage'>website data usage: {{ structure.size }}</p>
-
-{% endfor %}
-</div>
-
+		<h3><a href="{{ structure.url }}" target="_blank">{{ structure.url }}</a></h3>
+		<p>[URL] {{ structure.url }}</p>
+		<p>[description] {{ structure.description }}</p>
+		<p id='bing-data-usage'>website data usage: {{ structure.size }}</p>
+		
+	{% endfor %}
+	</div>
+</body>
 {% endblock %}

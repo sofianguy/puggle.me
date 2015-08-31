@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="homepage">
+<body id="homepage-body">
 	<img src="../static/puggle-me.png" width="500px" id="puggle-me-home">
-	<form action='/result' id='search-box'>
+	<form action='/result'>
 		<input type='text' placeholder='Search for something' name='bing_input' 
-		id='bing-input'>
+		id='home-search-box'>
 		<button type="submit" id='submit-button'>Search</button>
 	</form>
-</div>
+</body>
+<footer id="footer-homepage">
+	<span id="footer-left-sofia">
+		<p>puggle.me made by Sofia Nguy <br> 
+		<img src="../static/gmail.png" width="15px">sofianguy@gmail.com <br> 
+		<a href="https://github.com/sofianguy/puggle.me"><img src="../static/github.png" width="15px">sofianguy</a>
+		<br>
+		<a href="https://twitter.com/sofianguy"><img src="../static/twitter.png" width="15px">@sofianguy</a>
+	</p></span>
+
+	<span id="footer-right-mikel"><p>artwork by Mikel Tan <br> mikel.tan86@gmail.com</p></span>
+</footer>
 
 {% endblock %}
