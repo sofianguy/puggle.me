@@ -13,12 +13,14 @@
 
 	<div id="bing-search-results-outputs">
 	{% for structure in results %}
-
-		<h3><a href="{{ structure.url }}" target="_blank">{{ structure.url }}</a></h3>
+		<h3>
+			<p id='bing-data-usage'>{{ structure.size }}</p>
+			<a href="{{ structure.url }}" target="_blank">{{ structure.url }}</a>
+		</h3>
 		<p>[URL] {{ structure.url }}</p>
 		<p>[description] {{ structure.description }}</p>
-		<p id='bing-data-usage'>website data usage: {{ structure.size }}</p>
 		
+
 	{% endfor %}
 	</div>
 </body>
