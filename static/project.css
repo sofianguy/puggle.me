@@ -1,6 +1,6 @@
 /* **********HOMEPAGE********** */
 #homepage-body {
-	top: 25%;
+	top: 20%;
 	left: 25%;
 	right: 25%;
 	bottom: 25%;
@@ -83,10 +83,23 @@ ul {
 }
 
 #result-search-box {
+	border-radius: 15px;
 	font-size: 24px;
-	width: 400px;
-	height: 50px;
-	margin: center;
+	width: 500px;
+	height: 35px;
+	text-align: center;
+}
+
+#submit-button-results {
+	width: 80px;
+	height: 30px;
+	font-size: 14px;
+	font-family: sans-serif;
+	border-radius: 6px;
+	color: #000000;
+	/*background-color: #B2E6FF;*/
+	border: none;
+	border-style: groove;
 }
 
 #bing-search-results-outputs{
