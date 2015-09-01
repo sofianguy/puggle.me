@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<body id="result-body">
+
+<body>
+	<div class="send-text-info">Get search results via SMS! <br> Text your search to (415) 403-2414</div>
 	<div class="puggle-searchbox-result-navbar">
 		<ul>
 			<li class="nav-puggle-logo"><a href="/"><img src="../static/puggle-me.png" id="puggle-me-result"></a></li>
+			<span id="result-searchbox-and-button">
 			<li class="nav-searchbox"><form action='/result'>
 					<input type='text' placeholder='What else would you like to search?' name='bing_input' 
 					id='result-search-box'>
 					<button type="submit" id='submit-button-results'>Search</button>
 				</form>
 			</li>
+			</span>
 		</ul>
 	</div>
 
@@ -21,8 +25,6 @@
 		</h3>
 		<p class="p-result-url">{{ structure.url }}</p>
 		<p class="p-result-description">{{ structure.description }}</p>
-		
-
 	{% endfor %}
 	</div>
 </body>

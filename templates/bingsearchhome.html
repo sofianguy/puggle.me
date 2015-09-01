@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<body id="homepage-body">
+<body>
+	<div class="send-text-info">Get search results via SMS! <br> Text your search to (415) 403-2414</div>
+	<div id="homepage-body">
 	<img src="../static/puggle-me.png" width="500px" id="puggle-me-home">
 	<form action='/result'>
 		<input type='text' placeholder='Search Bing or type URL' name='bing_input' 
 		id='home-search-box'>
 		<button type="submit" id='submit-button'>Search</button>
 	</form>
+	</div>
 </body>
+
 <footer id="footer-homepage">
 	<span id="footer-left-sofia">
 		<p>puggle.me made by Sofia Nguy <br> 
