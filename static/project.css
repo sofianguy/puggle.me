@@ -27,6 +27,7 @@
 	color: #000000;
 	background-color: #B2E6FF;
 	border: none;
+	border-style: groove;
 }
 
 #footer-homepage {
@@ -38,8 +39,8 @@
 	left: 0;
 	padding: 1rem;
 	text-align: center;
-	
 }
+
 #footer-left-sofia {
 	white-space: nowrap;
 	margin-left: 30px;
@@ -58,17 +59,22 @@
 
 /* **********RESULT PAGE********** */
 #result-body {
-    display: block;
-    margin: 8px;
+	display: block;
+	margin: 8px;
 }
 
-#puggle-search-box-result {
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.puggle-searchbox-result-navbar {
 	background: #f2f2f2;
 	top: 0px;
-	right: auto;
-	left: auto;
+	right: 0;
+	left: 0;
 	padding: 1rem;
-	text-align: center;
 }
 
 #puggle-me-result {
@@ -90,16 +96,32 @@
 	font-size: small;
 }
 
-#bing-data-usage {
+.h3-result {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+.a-result {
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.bing-data-usage {
 	font-style: italic;
 	font-size: 20px;
 	display: inline-block;
 }
 
-#result-page {
-	margin-left: auto;
-	margin-right: auto;
-	top: 50%;
-	left: 50%;
-}​
+.p-result-url {
+	margin-top: 0px;
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+
+.p-result-description {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	font-size: 15px;
+}
 
