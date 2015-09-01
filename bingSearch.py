@@ -9,7 +9,6 @@ import requests
 bing = PyBingSearch(environ['BING_API_KEY'])
 
 def search3(search_string):
-	
 	result_list, next_uri = bing.search(search_string, limit=3, format='json') 
 	#limit = how many search results
 
