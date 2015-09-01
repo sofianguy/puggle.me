@@ -88,7 +88,7 @@ def twilioTest():
 		url_list.append(i['url'])
 
 	print "measuring", url_list
-	measured_url_list = measure(url_list, "9500")
+	measured_url_list = measure(url_list, "9000")
 
 	for i in range(len(twilio_foo)):
 		twilio_foo[i]['dsize'] = measured_url_list[i]
