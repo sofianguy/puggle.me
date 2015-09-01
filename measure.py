@@ -2,8 +2,8 @@ from subprocess import Popen, PIPE
 #PIPE used so that measure.py and dataMeasure.js can talk to each other
 import json
 
-def create_process(url):
-    args = ['phantomjs', 'dataMeasure.js', url]
+def create_process(url, time_out):
+    args = ['phantomjs', 'dataMeasure.js', url, time_out]
     #command line example: $ phantomjs dataMeasure.js http://yahoo.com
     #args is passed in Popen. Popen accesses the variable args (terminal command to get)
 
@@ -35,14 +35,14 @@ def read_proc_results(proc):
     return str_data_result_kb
     
 
-def measure(url_list):
+def measure(url_list, time_out):
     processes = []
     results = []
 
     # list of url from Bing search
     # for each url, create a process
     for url in url_list:
-        processes.append(create_process(url))
+        processes.append(create_process(url, time_out))
 
     # wait for each process in processes to finish Phantom code
     for p in processes:
@@ -54,4 +54,5 @@ def measure(url_list):
 
     # return results (list of websites' sizes)
     return results
+
 

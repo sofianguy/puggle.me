@@ -52,11 +52,10 @@ function addSizesSetTimeout(status) {
 page.onLoadFinished = addSizesAndQuit
 
 // run addSizesSetTimeout after 10 seconds
-setTimeout(addSizesSetTimeout, 9500);
+setTimeout(addSizesSetTimeout, system.args[2]);
 
 // program doesn't start until page.open() is called
 page.open(system.args[1]);
-
 
 // //Show contentType and bodySize
 // var contentTypeArray = []
