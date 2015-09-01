@@ -53,8 +53,9 @@ def bingResult():
 
 	# adds results to database
 	for page_data in page_data_structure_2:
-		bing_result_to_db = Result(url=page_data['url'], size=page_data['dsize'], 
-			datetime=datetime.utcnow(), description=page_data['description'])
+		bing_result_to_db = Result(url=page_data['url'], title=page_data['title'], 
+			size=page_data['dsize'], datetime=datetime.utcnow(), 
+			description=page_data['description'])
 		db.session.add(bing_result_to_db)
 		# **appends results to db**
 		result_objects.append(bing_result_to_db)
