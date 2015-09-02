@@ -12,7 +12,7 @@ Puggle.me helps people with limited internet connectivity find data-plan friendl
 * Opens websites and scans webpage on the server so that users don’t have to use their data to find out how big a website is
 * Puggle.me only shows the results rendered from website scan processes from the server. This is to avoid making puggle.me’s file sizes larger than it has to be. 
 
-###Technology Used
+###Technologies Used
 PhantomJS, SQL Alchemy, SQLite, Flask, Jinja, JavaScript, Python, HTML, CSS, Bing Search API, Twilio API
 
 ###Features
