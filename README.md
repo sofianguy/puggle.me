@@ -5,7 +5,7 @@ Puggle.me helps people with limited internet connectivity find data-plan friendl
 ![puggle.me homepage](http://i.imgur.com/8five6N.png)
 
 *puggle.me results page*
-![puggle.me results page](http://i.imgur.com/TBeWtGI.png)
+![puggle.me results page](http://i.imgur.com/qbnmlhp.png)
 
 ###How is puggle.me lightweight?
 * Minimal webpage design (i.e., by not using Bootstrap)
