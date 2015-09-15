@@ -3,7 +3,7 @@ from subprocess import Popen, PIPE
 import json
 
 def create_process(url, time_out):
-    args = ['phantomjs', 'dataMeasure.js', url, time_out]
+    args = ['phantomjs', 'app/dataMeasure.js', url, time_out]
     #command line example: $ phantomjs dataMeasure.js http://yahoo.com
     #args is passed in Popen. Popen accesses the variable args (terminal command to get)
 
@@ -25,7 +25,6 @@ def read_proc_results(proc):
                 str_data_result_kb = "under 1 kilobyte"
             else:
                 str_data_result_kb = "%0.1f kilobytes" % data_result_kb
-
         elif data_result_json['program'] == "setTimeout":
             str_data_result_kb = ">" + str(data_result_json['total']/1000) + " kilobytes"
 

@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect
-from measure import create_process, read_proc_results, measure 
+from app.measure import create_process, read_proc_results, measure 
 # from measure.py file, import these functions
-from bingSearch import search3, search5 # from bingSearch.py import search() functions
+from app.bingSearch import search # from bingSearch.py import search() functions
 from twilio import twiml
-from model import Result, connect_to_db, db #database stuff
+from app.model import Result, connect_to_db, db #database stuff
 from datetime import datetime
 from sqlalchemy import update
 import sqlite3
@@ -13,7 +13,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def bingSearch():
-
 	return render_template('bingsearchhome.html')
 
 @app.route('/result')
@@ -25,7 +24,7 @@ def bingResult():
 	if search_input == "":
 		return redirect('/')
 
-	search_list = search5(search_input)
+	search_list = search(search_input, 5)
 
 	result_objects = []
 	page_data_structure_2 = []
@@ -67,7 +66,7 @@ def bingResult():
 @app.route('/twilioTest', methods=['POST'])
 def twilioTest():
 	text_body = request.values.get('Body')
-	result_of_search_text_input = search3(text_body)
+	result_of_search_text_input = search(text_body, 3)
 	print result_of_search_text_input
 
 	result_objects = []
