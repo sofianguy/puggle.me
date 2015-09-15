@@ -40,9 +40,10 @@ def bingResult():
 			'description': s.description,
 			})
 
-	url_list = []
-	for page_data in page_data_structure_2:
-		url_list.append(page_data['url'])
+	url_list = [page_data['url'] for page_data in page_data_structure_2]
+	# url_list = []
+	# for page_data in page_data_structure_2:
+	# 	url_list.append(page_data['url'])
 
 	print "measuring", url_list
 	measured_url_list = measure(url_list, "20000")
@@ -82,9 +83,10 @@ def twilioTest():
 				'description': each.description
 				})
 
-	url_list = []
-	for i in twilio_foo:
-		url_list.append(i['url'])
+	url_list = [i['url'] for i in twilio_foo]
+	# url_list = []
+	# for i in twilio_foo:
+	# 	url_list.append(i['url'])
 
 	print "measuring", url_list
 	measured_url_list = measure(url_list, "9000")
