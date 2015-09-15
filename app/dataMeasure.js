@@ -12,7 +12,7 @@ page.onResourceReceived = function(response) {
   bodySizeArray.push(response.bodySize)
 };
 
-function addSizesAndQuit(status) {
+function addSizesSetTimeout(status, exitTimeout) {
   var bodySizeTotal = 0
   for (var i=0; i < bodySizeArray.length; i++) {
     if (bodySizeArray[i] === undefined) {
@@ -22,25 +22,7 @@ function addSizesAndQuit(status) {
       //add up all values from bodySize
     }
   };
-  data_result = {'program': "complete", 'total': bodySizeTotal}
-  data_result_json = JSON.stringify(data_result)
-  console.log(data_result_json);
-
-  // shuts program down
-  phantom.exit();
-};
-
-function addSizesSetTimeout(status) {
-  var bodySizeTotal = 0
-  for (var i=0; i < bodySizeArray.length; i++) {
-    if (bodySizeArray[i] === undefined) {
-    //if undefined, continue to else statement
-    } else {
-      bodySizeTotal += bodySizeArray[i];
-      //add up all values from bodySize
-    }
-  };
-  data_result = {'program': "setTimeout", 'total': bodySizeTotal}
+  data_result = {'program': exitTimeout, 'total': bodySizeTotal}
   data_result_json = JSON.stringify(data_result)
   console.log(data_result_json);
 
@@ -49,10 +31,15 @@ function addSizesSetTimeout(status) {
 };
 
 // setting up computation
-page.onLoadFinished = addSizesAndQuit
+// page.onLoadFinished = addSizesSetTimeout
+page.onLoadFinished = function(status) {
+  addSizesSetTimeout(status, "complete")
+}
 
 // run addSizesSetTimeout after 10 seconds
-setTimeout(addSizesSetTimeout, system.args[2]);
+setTimeout(function () {
+  addSizesSetTimeout(status, "setTimeout")
+}, system.args[2]);
 
 // program doesn't start until page.open() is called
 page.open(system.args[1]);
