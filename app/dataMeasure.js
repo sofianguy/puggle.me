@@ -13,24 +13,6 @@ page.onResourceReceived = function(response) {
   bodySizeArray.push(response.bodySize)
 };
 
-function addSizesAndQuit(status) {
-  var bodySizeTotal = 0
-  for (var i=0; i < bodySizeArray.length; i++) {
-    if (bodySizeArray[i] === undefined) {
-    //if undefined, continue to else statement
-    } else {
-      bodySizeTotal += bodySizeArray[i];
-      //add up all values from bodySize
-    }
-  };
-  data_result = {'program': "complete", 'total': bodySizeTotal}
-  data_result_json = JSON.stringify(data_result)
-  console.log(data_result_json);
-
-  // shuts program down
-  phantom.exit();
-};
-
 function addSizesSetTimeout(status, exitTimeout) {
   var bodySizeTotal = 0
   for (var i=0; i < bodySizeArray.length; i++) {
