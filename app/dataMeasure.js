@@ -8,8 +8,27 @@ var system = require('system');
 // //Shows total bodySize values
 var bodySizeArray = []
 page.onResourceReceived = function(response) {
-  //response is an object. I want the bodySize property
+  //response is an object. I want the bodySize property.
+  //put body sizes in array
   bodySizeArray.push(response.bodySize)
+};
+
+function addSizesAndQuit(status) {
+  var bodySizeTotal = 0
+  for (var i=0; i < bodySizeArray.length; i++) {
+    if (bodySizeArray[i] === undefined) {
+    //if undefined, continue to else statement
+    } else {
+      bodySizeTotal += bodySizeArray[i];
+      //add up all values from bodySize
+    }
+  };
+  data_result = {'program': "complete", 'total': bodySizeTotal}
+  data_result_json = JSON.stringify(data_result)
+  console.log(data_result_json);
+
+  // shuts program down
+  phantom.exit();
 };
 
 function addSizesSetTimeout(status, exitTimeout) {
@@ -30,14 +49,22 @@ function addSizesSetTimeout(status, exitTimeout) {
   phantom.exit();
 };
 
-// setting up computation
-// page.onLoadFinished = addSizesSetTimeout
+// setting up computation for complete process load
+// if process finished, show "complete" in data_result object key 'program'
 page.onLoadFinished = function(status) {
   addSizesSetTimeout(status, "complete")
-}
+  }
 
-// run addSizesSetTimeout after 10 seconds
-setTimeout(function () {
+// //Referential Transparency
+// var name_function = function() {
+//   addSizesSetTimeout(status, "setTimeout")
+// }
+
+// run addSizesSetTimeout after X amount of seconds
+//system.args[2] -- enter seconds in process
+// setTimeout takes the anonymous function 
+// setTimeout calls addSizesSetTimeout function, after system.args[2] number of seconds
+setTimeout(function() {
   addSizesSetTimeout(status, "setTimeout")
 }, system.args[2]);
 

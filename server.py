@@ -46,6 +46,7 @@ def bingResult():
 	# 	url_list.append(page_data['url'])
 
 	print "measuring", url_list
+	# measure the list of URLs after 20 seconds
 	measured_url_list = measure(url_list, "20000")
 
 	for i in range(len(page_data_structure_2)):
@@ -89,6 +90,7 @@ def twilioTest():
 	# 	url_list.append(i['url'])
 
 	print "measuring", url_list
+	# measure the list of URLs after 9 seconds
 	measured_url_list = measure(url_list, "9000")
 
 	for i in range(len(twilio_foo)):
