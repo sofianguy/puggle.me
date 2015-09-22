@@ -121,6 +121,4 @@ if __name__ == '__main__':
 	# debug=True gives us error messages in the browser and also "reloads" our web app
 	# if we change the code.
 	connect_to_db(app)
-	app.run(debug=True)
-
-	# app.run()
+	app.run(host='0.0.0.0')
